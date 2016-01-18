@@ -1,0 +1,90 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $best_goods} -->
+<div id="recomend_product">
+    <div class="list_left">
+        <h2>为你推荐</h2>
+    </div>
+    <div class="list_right">
+        <a href="javascript:;" class="prev_left2"><img src="images/bg_03.jpg"></a>
+        <a href="javascript:;" class="next_right2"><img src="images/bg_02.jpg"></a>
+    </div> 
+    
+    <div class="list_main2">
+         <div class="list_items2" style="width: 2400px;">
+            <div class="list_item2">
+                <ul>		
+                	<!--{foreach from=$best_goods item=goods name=go}-->
+                    <!--{if $smarty.foreach.go.iteration <= 5}-->
+                    <li>
+                    	<a href="{$goods.url}" title="{$goods.name|escape:html}"><img src="{$goods.goods_img}" alt="{$goods.name|escape:html}" class="goodsimg" /></a>
+                        <strong><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></strong>
+                        <font>
+                        <!-- {if $goods.promote_price neq ""} -->
+                        {$goods.promote_price}
+                        <!-- {else}-->
+                        {$goods.shop_price}
+                        <!--{/if}-->
+                        </font>
+                    </li>
+                    <!-- {/if} -->           
+                	<!--{/foreach}-->
+                </ul>
+            </div>
+            <div class="list_item2">
+                <ul>             				
+                	<!--{foreach from=$best_goods item=goods name=go}-->
+                    <!--{if $smarty.foreach.go.iteration > 5}-->
+                    <li>
+                    	<a href="{$goods.url}"><img src="{$goods.goods_img}" alt="{$goods.name|escape:html}" class="goodsimg" /></a>
+                        <strong><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></strong>
+                        <font>
+                        <!-- {if $goods.promote_price neq ""} -->
+                        {$goods.promote_price}
+                        <!-- {else}-->
+                        {$goods.shop_price}
+                        <!--{/if}-->
+                        </font>
+                    </li>
+                    <!-- {/if} -->          
+                	<!-- {/foreach} -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blank"></div>        
+    
+<script type="text/javascript">
+    var contaner2 = $(".list_main2");
+    var imgList2 = $(".list_items2");
+    var imgWidth2 = contaner2.find(".list_item2:eq(0)").outerWidth();
+    var imgCount2 = contaner2.find(".list_item2").length;
+    var listWidth2 = imgWidth2 * imgCount2;
+    
+    $(".prev_left2").click(function () {
+        imgList2.stop(true);
+        if (imgList2.offset().left < (contaner2.offset().left)) {
+            var remainWidth = imgList2.offset().left + imgWidth - contaner2.offset().left;
+            if (remainWidth > 0) {
+                imgList2.animate({ left: "+=" + remainWidth });
+            } else {
+                imgList2.animate({ left: "+=" + imgWidth2 });
+            }
+        }
+    });
+    $(".next_right2").click(function () {
+        imgList2.stop(true);
+        if ((imgList2.offset().left + listWidth) > (contaner2.offset().left + contaner.width())) {
+            var remainWidth = (imgList2.offset().left + listWidth2) - (contaner2.offset().left + contaner2.width());
+            if (Math.abs(remainWidth) < imgWidth2) {
+                imgList2.animate({ left: "-=" + remainWidth });
+            } else {
+                imgList2.animate({ left: "-=" + imgWidth2 });
+            }
+
+        }
+    });
+    
+    imgList2.css({ width: listWidth2 });
+</script>
+<!-- {/if} -->

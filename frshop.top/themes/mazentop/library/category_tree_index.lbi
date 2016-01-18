@@ -1,0 +1,67 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+//初始化主菜单
+function sw_nav2(obj,tag)
+{
+	var DisSub2 = document.getElementById("DisSub2_"+obj);
+	var HandleLI2= document.getElementById("HandleLI2_"+obj);
+	if(tag==1)
+	{
+		DisSub2.style.display = "block";
+		HandleLI2.className="current";
+	}
+	else
+	{
+		DisSub2.style.display = "none";
+		HandleLI2.className="";
+	}
+}
+</script>    
+    
+<div id="category_tree">
+<dl class="clearfix cindex">
+    <div>
+    <!--{foreach from=$categories item=cat name=no}-->
+    	<div class="dt" onMouseOver="sw_nav2({$smarty.foreach.no.iteration},1);" onMouseOut="sw_nav2({$smarty.foreach.no.iteration},0);" >
+        	<div id="HandleLI2_{$smarty.foreach.no.iteration}"><a class="a {if $smarty.foreach.no.index mod 2 eq 0}{else}t{/if}" href="{$cat.url}">{$cat.name|escape:html}<i></i></a></div>
+            <dd id=DisSub2_{$smarty.foreach.no.iteration} class="bbox" style="display:none">
+                <!--{foreach from=$cat.cat_id item=child name=no2}-->
+                <!--{if $smarty.foreach.no2.iteration < 10}-->
+                <div class="cbox">
+                	<a class="over_2" href="{$child.url}">{$child.name|escape:html}</a>
+               	 	<div class="clearfix" {if $smarty.foreach.no2.last}style="border-bottom:none;"{/if}>
+                        <!--{foreach from=$child.cat_id item=childer name=no3}-->
+                        <!--{if $smarty.foreach.no3.iteration < 6}-->
+                        <a class="over_3" href="{$childer.url}">{$childer.name|escape:html}</a>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                	</div>
+                </div>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </dd> 
+        </div>
+    <!--{/foreach}-->
+    </div>
+</dl>
+</div>
+<script type="text/javascript">
+<!--
+	$(window).load(function(){
+		var col_width = 180;
+		$('#category_tree .dt').hover(function(){
+			var len = $(this).find('.bbox .cbox').length;		
+			var item_height =$(this).find('.cbox').height();
+			var offset_top = $(this)[0].offsetTop;
+			if(item_height!=undefined&&item_height!=null){
+				if(item_height<offset_top){
+					offset_top +=5;
+				}
+			}
+			if ( len <= 3)	$(this).find('.bbox').css({width:'180px'});		
+			else if ( len > 3 && len <= 6)	$(this).find('.bbox').css({width:'360px'});
+			else $(this).find('.bbox').css({width:'540px'});
+		},function(){});
+	});
+//-->
+</script>

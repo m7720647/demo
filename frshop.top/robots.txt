@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /mazentop
+Disallow: /api
+Disallow: /includes

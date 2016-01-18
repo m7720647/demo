@@ -1,0 +1,77 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods} -->
+<div id="product_star">
+    <div class="list_left">
+        <h2>明星单品</h2>
+    </div>
+    <div class="list_right">
+        <a href="javascript:;" class="prev_left"><img src="images/bg_03.jpg"></a>
+        <a href="javascript:;" class="next_right"><img src="images/bg_02.jpg"></a>
+    </div> 
+    
+    <div class="list_main">
+         <div class="list_items" style="width: 2400px;">
+            <div class="list_item">
+                <ul>		
+                	<!--{foreach from=$hot_goods item=goods name=go}-->
+                    <!--{if $smarty.foreach.go.iteration <= 5}-->
+                    <li class="item_{$smarty.foreach.go.iteration}">
+                    	<a href="{$goods.url}" title="{$goods.name|escape:html}"><img src="{$goods.goods_img}" alt="{$goods.name|escape:html}" class="goodsimg" /></a>
+                        <strong><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></strong>
+                    </li>
+                    <!-- {/if} -->           
+                	<!--{/foreach}-->
+                </ul>
+            </div>
+            <div class="list_item">
+                <ul>             				
+                	<!--{foreach from=$hot_goods item=goods name=go}-->
+                    <!--{if $smarty.foreach.go.iteration > 5}-->
+                    <li class="item_{$smarty.foreach.go.iteration}">
+                    	<a href="{$goods.url}"><img src="{$goods.goods_img}" alt="{$goods.name|escape:html}" class="goodsimg" /></a>
+                        <strong><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></strong>
+                    </li>
+                    <!-- {/if} -->          
+                	<!-- {/foreach} -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blank"></div> 
+<div class="blank"></div>       
+    
+<script type="text/javascript">
+    var contaner = $(".list_main");
+    var imgList = $(".list_items");
+    var imgWidth = contaner.find(".list_item:eq(0)").outerWidth();
+    var imgCount = contaner.find(".list_item").length;
+    var listWidth = imgWidth * imgCount;
+    
+    $(".prev_left").click(function () {
+        imgList.stop(true);
+        if (imgList.offset().left < (contaner.offset().left)) {
+            var remainWidth = imgList.offset().left + imgWidth - contaner.offset().left;
+            if (remainWidth > 0) {
+                imgList.animate({ left: "+=" + remainWidth });
+            } else {
+                imgList.animate({ left: "+=" + imgWidth });
+            }
+        }
+    });
+    $(".next_right").click(function () {
+        imgList.stop(true);
+        if ((imgList.offset().left + listWidth) > (contaner.offset().left + contaner.width())) {
+            var remainWidth = (imgList.offset().left + listWidth) - (contaner.offset().left + contaner.width());
+            if (Math.abs(remainWidth) < imgWidth) {
+                imgList.animate({ left: "-=" + remainWidth });
+            } else {
+                imgList.animate({ left: "-=" + imgWidth });
+            }
+
+        }
+    });
+    
+    imgList.css({ width: listWidth });
+</script>
+<!-- {/if} -->

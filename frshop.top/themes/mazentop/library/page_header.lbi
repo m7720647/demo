@@ -1,0 +1,86 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='jquery.js,jquery.json.js'} 
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+<script type="text/javascript">
+//初始化主菜单
+function sw_nav(obj,tag){
+	var DisSub = document.getElementById("DisSub_"+obj);
+	var HandleLI= document.getElementById("HandleLI_"+obj);
+	if(tag==1){
+		DisSub.style.display = "block";
+		DisSub.className="cart_con current";
+	}else{
+		DisSub.style.display = "none";
+		DisSub.className="cart_con";		
+	}
+}
+</script>
+<div id="Top">
+    <!--顶部导航-->
+    <div class="header_bg">
+        <div class="block top_nav">
+            <div class="top_bav_l">
+                <!--{if $navigator_list.top}-->
+                <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+                       <a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a>
+                        <!-- {if !$smarty.foreach.nav_top_list.last} -->
+                        <!-- {/if} -->
+                <!-- {/foreach} -->
+               <!-- {/if} -->
+            </div>
+            <div class="top_nav_r cart_info" onMouseOver="sw_nav(1,1);" onMouseOut="sw_nav(1,0);">              	
+                <a href="flow.php" class="cart_a" id="ECS_CARTINFO">{insert name='cart_info'}</a>
+                <div id="DisSub_1" class="cart_con" style="display: none;">
+                    <div class="spacer"></div>
+                    <div class="bd">
+                        <!-- 此处是要更新的内容 -->
+                        {insert name='cart_info_product'}
+                    </div>
+                </div>
+            </div>
+            <div class="top_nav_r">
+            {insert_scripts files='transport.js,utils.js'}
+            <font id="ECS_MEMBERZONE" >{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} </font>
+            </div>
+        </div>
+  	</div>
+        
+	<div class="header clearfix">
+      <div class="block header_con">
+       	<a class="logo_new" href="./"><img src="images/logo.gif" /></a>            
+       	<div class="ser_n">
+            <form id="searchForm" class="searchBox clearfix" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()">
+                <span class="ipt1"><input name="keywords" type="text" id="keyword" value="{$search_keywords|escape}" class="searchKey" /></span>
+                <span class="ipt2"><input type="submit"  name="imageField" class="fm_hd_btm_shbx_bttn" value=""></span>
+            </form>
+            <div class="clear_f"></div>
+            {if $searchkeywords}
+            <div class="search_tig">
+                {foreach from=$searchkeywords item=val}
+                <a href="search.php?keywords={$val|escape:url}" target="_blank" class="track">{$val}</a>
+                {/foreach}
+            </div>    
+            {/if}
+		</div>
+        <div class="menu">
+          <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+          <!-- {if $smarty.foreach.nav_middle_list.iteration < 7} -->
+          <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="cur"{/if}>{$nav.name}</a> 
+          <!-- {/if} -->        
+          <!-- {/foreach} -->
+		</div>
+        <div style="clear:both"></div> 
+	  </div>
+    </div>
+</div>
+
+
+
+ 
+ 
+
+ 
+
+

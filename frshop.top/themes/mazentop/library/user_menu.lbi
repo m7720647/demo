@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="left_help clearfix">
+  <dl>
+  	<dt>订单中心</dt>
+    <dd><a href="user.php?act=order_list"{if $action eq 'order_list'|| $action eq 'order_detail'}class="curs"{/if}>{$lang.label_order}</a></dd>
+    <dd><a href="user.php?act=address_list"{if $action eq 'address_list'}class="curs"{/if}>{$lang.label_address}</a></dd>
+    <dd><a href="user.php?act=booking_list"{if $action eq 'booking_list'}class="curs"{/if}>{$lang.label_booking}</a></dd>
+  </dl>
+  <dl>
+  	<dt>会员中心</dt>
+    <dd><a href="user.php" {if $action eq 'default'}class="curs"{/if}>{$lang.label_welcome}</a></dd>
+    <dd><a href="user.php?act=profile"{if $action eq 'profile'}class="curs"{/if}>{$lang.label_profile}</a></dd>
+    <dd><a href="user.php?act=collection_list"{if $action eq 'collection_list'}class="curs"{/if}>{$lang.label_collection}</a></dd>
+    <dd><a href="user.php?act=message_list"{if $action eq 'message_list'}class="curs"{/if}>{$lang.label_message}</a></dd>
+    <!--a href="user.php?act=tag_list"{if $action eq 'tag_list'}class="curs"{/if}>{$lang.label_tag}</a-->
+    <dd><a href="user.php?act=bonus"{if $action eq 'bonus'}class="curs"{/if}>{$lang.label_bonus}</a></dd>
+    <dd><a href="user.php?act=comment_list"{if $action eq 'comment_list'}class="curs"{/if}>{$lang.label_comment}</a></dd>
+    <!--<a href="user.php?act=group_buy">{$lang.label_group_buy}</a>-->
+    <!--a href="user.php?act=track_packages"{if $action eq 'track_packages'}class="curs"{/if}>{$lang.label_track_packages}</a-->
+    <!--a href="user.php?act=account_log"{if $action eq 'account_log'}class="curs"{/if}>{$lang.label_user_surplus}</a-->
+	<!--{if $show_transform_points}-->
+    <dd><a href="user.php?act=transform_points"{if $action eq 'transform_points'}class="curs"{/if}><img src="../images/u14.gif"> {$lang.label_transform_points}</a></dd>
+    <!--{/if}-->
+  </dl>
+</div>

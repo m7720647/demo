@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_review} -->
+<div id="hot_review">
+    <div class="review_title">
+        <h2>热评产品</h2>
+    </div>
+	<div class="clearfix">
+        <!--{foreach from=$hot_review item=goods name=hot_review}-->
+        <div class="reviewItem" <!-- {if $smarty.foreach.hot_review.last} -->style="margin-right:0"<!-- {/if} -->>
+           <div class="reviewImg"><a href="{$goods.url}" title="{$goods.name|escape:html}"><img src="{$goods.goods_img}" alt="{$goods.name|escape:html}" width="285" height="285" /></a></div>
+           <p class="review">{$goods.content}</p>
+           <p class="author">来自于{$goods.user_name}的评论</p>
+           <div class="info">
+           	<span><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a></span>
+            <font>|</font>
+            <p>{$goods.shop_price}</p>
+           </div>
+        </div>
+        <!--{/foreach}-->
+  </div>
+</div>
+<div class="blank"></div>
+<!-- {/if} -->

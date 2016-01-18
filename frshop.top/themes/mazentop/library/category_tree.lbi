@@ -1,0 +1,38 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="box" id="category_list">
+ <div class="box_1">
+ 	<h3><span>所有类目</span></h3>
+     
+  	<div class="boxCenterList clearfix" id="category_list2">
+    	<!--{foreach from=$categories2 item=cat name=no}-->
+		<h4><b {if $category eq $cat.id}style="background-position:0 0;"{/if} onclick="tab({$smarty.foreach.no.index})"></b><a href="{$cat.url}" {if $category eq $cat.id} class="f6"{/if}
+        >{$cat.name|escape:html}</a></h4>
+        <ul {if $category eq $cat.id}{if $cat.cat_id eq 0}style="display:none"{else}style="display:block"{/if}{/if} class="none" >
+		<!--{foreach from=$cat.cat_id item=child}-->
+		  <li><a href="{$child.url}">{$child.name|escape:html}</a></li>
+        <!--{/foreach}-->
+		</ul>
+        <div style="clear:both"></div>
+        <!--{/foreach}--> 
+    </div>
+ </div>
+</div>
+<div class="blank"></div>
+<script type="text/javascript">
+obj_ul = document.getElementById("category_list2").getElementsByTagName("ul")
+obj_img = document.getElementById("category_list2").getElementsByTagName("b")
+function tab(id)
+{ 
+		if(obj_ul.item(id).style.display == "block")
+		{
+			obj_ul.item(id).style.display = "none"
+			obj_img.item(id).style.backgroundPosition = "-17px"
+			return false;
+		}
+		else(obj_ul.item(id).style.display == "none")
+		{
+			obj_ul.item(id).style.display = "block"
+			obj_img.item(id).style.backgroundPosition = "0px"
+		}
+}
+</script>

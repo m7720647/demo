@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<div class="floor">
+  <div class="tit">
+  	<div class="txt-l"><span><i>2F</i>{$goods_cat.name|escape:html}</span></div>
+	<div class="txt-r"><a href="{$goods_cat.url}">更多<b class="fsimsun">&gt;</b></a></div>
+  </div>
+  <div class="ctn">
+  	<div class="leftslide">{insert name='ads' id=3 num=1}</div>
+    <div class="rigtnmsld">
+  	<!--{foreach from=$cat_goods item=goods name=cate_goods}-->
+      <div <!-- {if $smarty.foreach.cate_goods.iteration==1}-->class="goodtd"<!-- {else}-->class="bcdbx"<!--{/if}-->>
+          <p class="goodsname"><a title="{$goods.name|escape:html}" href="{$goods.url}">{$goods.name|escape:html}</a></p>
+          <p class="price"><!-- {if $goods.promote_price neq ""} -->{$goods.promote_price}<!-- {else}-->{$goods.shop_price}<!--{/if}--></p>
+  	  	  <!-- {if $smarty.foreach.cate_goods.iteration==1}-->
+          <div class="goodspic"><a title="{$goods.name|escape:html}" href="{$goods.url}"><img width="220" height="220" alt="{$goods.name|escape:html}" src="{$goods.goods_img}"></a></div>
+          <!-- {else}-->
+          <div class="goodspic"><a title="{$goods.name|escape:html}" href="{$goods.url}"><img width="126" height="126" alt="{$goods.name|escape:html}" src="{$goods.goods_img}"></a></div>
+     	  <!-- {/if} -->
+	  </div> 
+    <!-- {/foreach} -->
+    </div>
+  </div>  
+</div>
+<div class="blank"></div>

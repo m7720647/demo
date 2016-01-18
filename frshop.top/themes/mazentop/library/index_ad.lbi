@@ -1,0 +1,34 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<SCRIPT src="themes/mazentop/js/banner.js" type=text/javascript></SCRIPT>
+<style type="text/css"> 
+#imgPlay {
+	MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 1200px; ZOOM: 1; POSITION: relative; HEIGHT: 419px
+}
+#imgPlay .imgs LI {
+	FLOAT: left; POSITION: relative
+}
+#imgPlay .imgs {
+	WIDTH: 5760px
+}
+#imgPlay .num {
+	display: inline;
+    height: 19px;
+    right:45%;
+    position: absolute;
+    top: 390px;
+}
+#imgPlay .num SPAN {
+	DISPLAY: inline-block; BACKGROUND: url(themes/mazentop/images/imgPlayer.png) no-repeat -19px -83px; MARGIN: 0px 2px; OVERFLOW: hidden; WIDTH: 14px; CURSOR: pointer; LINE-HEIGHT: 0; HEIGHT: 13px
+}
+#imgPlay .num SPAN.on {
+	BACKGROUND-POSITION: 1px -83px
+}
+</style>
+<div class="container" id="imgPlay">
+  <ul class="imgs" id="actor">
+  	<!--{foreach from=$flash name=myflash item=flash}-->
+    <li><a href="{$flash.url}" target="_blank"><img src="{$flash.src}" /></a></li>
+    <!--{/foreach}-->
+  </ul>
+  <div class="num" id="numInner"></DIV>
+</div>
